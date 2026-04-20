@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kai Choong — Engineer & Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text-primary: #0F0F0E;
+    --text-secondary: #5C5C58;
+    --text-muted: #9A9A94;
+    --amber: #F59E0B;
+    --amber-light: #FEF3C7;
+    --amber-dark: #92400E;
+    --border: #E5E5E0;
+    --border-strong: #C8C8C0;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* PAGE SYSTEM */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 250, 248, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--amber); }
+
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid transparent;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a.active {
+    color: var(--amber-dark);
+    background: var(--amber-light);
+    border-color: var(--amber);
+    border-radius: 4px;
+  }
+
+  /* ─── PAGE 1: DIGITAL IDENTITY ─── */
+
+  /* HERO */
+  .hero {
+    padding: 80px 2rem 72px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-label::before {
+    content: '> ';
+    color: var(--text-muted);
+  }
+
+  .hero-name {
+    font-family: var(--mono);
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .hero-name em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .hero-role {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.01em;
+    margin-bottom: 28px;
+    padding-left: 2px;
+  }
+
+  .hero-oneliner {
+    font-family: var(--sans);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-primary);
+    max-width: 580px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    border-left: 3px solid var(--amber);
+    padding-left: 20px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--text-primary);
+    text-decoration: none;
+    padding: 12px 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 2px solid var(--text-primary);
+  }
+
+  .hero-cta:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--text-primary);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .hero-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--border);
+    filter: grayscale(20%);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo { width: 100px; height: 100px; }
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .about-text p + p { margin-top: 16px; }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .stat-row {
+    background: var(--bg-card);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-cell {
+    background: var(--bg-card);
+    padding: 24px 20px;
+  }
+
+  .skill-index {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border-strong);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 36px;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -36px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border: 2px solid var(--bg);
+    outline: 1px solid var(--amber);
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .timeline-title {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .timeline-org {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .edu-card + .edu-card { margin-top: 1px; }
+
+  .edu-degree {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .edu-school {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--amber);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ─── PAGE 2: SOCIAL QR ─── */
+  .social-page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 60px 2rem;
+  }
+
+  .social-hero {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .social-avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--text-primary);
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.02em;
+  }
+
+  .social-name {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .social-tagline {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
+
+  .contact-section { margin-bottom: 40px; }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-left: 2px;
+  }
+
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-primary);
+    margin-bottom: 1px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    width: 100%;
+  }
+
+  .contact-btn:hover {
+    border-color: var(--amber);
+    background: var(--amber-light);
+  }
+
+  .contact-btn:hover .btn-icon { color: var(--amber-dark); }
+
+  .btn-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .btn-text { flex: 1; }
+
+  .btn-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .btn-arrow {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-switch {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+  }
+
+  .footer-switch:hover { text-decoration: underline; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    nav { padding: 0 1rem; }
+    .nav-links a { padding: 6px 10px; font-size: 11px; }
+    .hero, .section { padding-left: 1rem; padding-right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">kai<span>.</span>dev</div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" id="nav-p1" onclick="showPage('p1',this)">Profile</a></li>
+    <li><a href="#" id="nav-p2" onclick="showPage('p2',this)">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════ PAGE 1: DIGITAL IDENTITY ═══════════════ -->
+<div id="p1" class="page active">
+
+  <div class="hero">
+    <div class="hero-label">Process & Equipment Engineer</div>
+    <h1 class="hero-name">Kai<br><em>Choong</em></h1>
+    <div class="hero-role">@ Micron Technology · Singapore</div>
+    <p class="hero-oneliner">Building at the intersection of semiconductor engineering, machine learning, and entrepreneurship — turning hard problems into working systems.</p>
+    <a href="#" class="hero-cta" onclick="showPage('p2', document.getElementById('nav-p2'))">Connect with me →</a>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01 //</span>
+      <span class="section-title">About</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Pathfinding Engineer at Micron Technology, where I work on process and equipment development — pushing the boundaries of what's manufacturable at scale.</p>
+        <p>Outside the fab, I build things: AI-powered tools, educational platforms, and hardware projects. I believe the best engineers are also makers — people who can't stop turning ideas into something real.</p>
+        <p>Currently exploring the crossover between machine learning and materials science, and building in public wherever possible.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-row">
+          <span class="stat-label">Location</span>
+          <span class="stat-value">Singapore</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Role</span>
+          <span class="stat-value">Pathfinding Engineer</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Company</span>
+          <span class="stat-value">Micron Technology</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Focus</span>
+          <span class="stat-value">Process & Equipment Dev</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Side quests</span>
+          <span class="stat-value">AI · Hardware · Building</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02 //</span>
+      <span class="section-title">Skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="skill-index">[01]</div>
+        <div class="skill-name">Coding</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-index">[02]</div>
+        <div class="skill-name">Leadership</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-index">[03]</div>
+        <div class="skill-name">Research</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-index">[04]</div>
+        <div class="skill-name">Machine Learning</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-index">[05]</div>
+        <div class="skill-name">Material Science</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-index">[06]</div>
+        <div class="skill-name">Entrepreneurship</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03 //</span>
+      <span class="section-title">Experience</span>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 — Present</div>
+        <div class="timeline-title">Process & Equipment Development Pathfinding Engineer</div>
+        <div class="timeline-org">Micron Technology</div>
+        <div class="timeline-desc">Leading pathfinding research for next-generation semiconductor process nodes. Working at the intersection of materials, equipment, and yield optimization.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Previous</div>
+        <div class="timeline-title">Maker Educator & Content Creator</div>
+        <div class="timeline-org">Independent</div>
+        <div class="timeline-desc">Teaching AI hardware projects with platforms like UNIHIKER K10 and Xiaozhi AI. Building curriculum and content that bridges engineering and accessibility.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04 //</span>
+      <span class="section-title">Education</span>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">Master of Science, Mechanical Engineering</div>
+        <div class="edu-school">National University of Singapore (NUS)</div>
+      </div>
+      <div class="edu-year">NUS</div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-mono">© 2026 Kai Choong</span>
+    <button class="footer-switch" onclick="showPage('p2', document.getElementById('nav-p2'))">View contact page →</button>
+  </footer>
+
+</div>
+
+<!-- ═══════════════ PAGE 2: SOCIAL QR ═══════════════ -->
+<div id="p2" class="page">
+
+  <div class="social-page">
+    <div class="social-hero">
+      <div class="social-avatar">KC</div>
+      <div class="social-name">Kai Choong</div>
+      <div class="social-tagline">Engineer · Builder · Maker</div>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-label">Message me directly</div>
+
+      <a href="https://wa.me/6583892253" class="contact-btn" target="_blank">
+        <span class="btn-icon">💬</span>
+        <span class="btn-text">
+          WhatsApp
+          <span class="btn-sub">+65 8389 2253</span>
+        </span>
+        <span class="btn-arrow">↗</span>
+      </a>
+
+      <a href="https://t.me/kaichoong" class="contact-btn" target="_blank">
+        <span class="btn-icon">✈</span>
+        <span class="btn-text">
+          Telegram
+          <span class="btn-sub">@kaichoong</span>
+        </span>
+        <span class="btn-arrow">↗</span>
+      </a>
+
+      <a href="mailto:kaichoong@gmail.com" class="contact-btn">
+        <span class="btn-icon">✉</span>
+        <span class="btn-text">
+          Email
+          <span class="btn-sub">kaichoong@gmail.com</span>
+        </span>
+        <span class="btn-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-label">Find me online</div>
+
+      <a href="https://www.linkedin.com/in/kaichoong/" class="contact-btn" target="_blank">
+        <span class="btn-icon">in</span>
+        <span class="btn-text">
+          LinkedIn
+          <span class="btn-sub">linkedin.com/in/kaichoong</span>
+        </span>
+        <span class="btn-arrow">↗</span>
+      </a>
+    </div>
+
+    <div style="text-align: center; padding-top: 32px; border-top: 1px solid var(--border);">
+      <button class="footer-switch" onclick="showPage('p1', document.getElementById('nav-p1'))">← Back to profile</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+</script>
+
+</body>
+</html>
