@@ -423,18 +423,14 @@
   }
 
   .social-avatar {
-    width: 80px;
-    height: 80px;
-    background: var(--text-primary);
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
     margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--amber);
-    letter-spacing: -0.02em;
+    display: block;
+    border: 2px solid var(--border);
   }
 
   .social-name {
@@ -569,11 +565,16 @@
 <div id="p1" class="page active">
 
   <div class="hero">
-    <div class="hero-label">Process & Equipment Engineer</div>
-    <h1 class="hero-name">Kai<br><em>Choong</em></h1>
-    <div class="hero-role">@ Micron Technology · Singapore</div>
-    <p class="hero-oneliner">Building at the intersection of semiconductor engineering, machine learning, and entrepreneurship — turning hard problems into working systems.</p>
-    <a href="#" class="hero-cta" onclick="showPage('p2', document.getElementById('nav-p2'))">Connect with me →</a>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-label">Process & Equipment Engineer</div>
+        <h1 class="hero-name">Kai<br><em>Choong</em></h1>
+        <div class="hero-role">@ Micron Technology · Singapore</div>
+        <p class="hero-oneliner">Building at the intersection of semiconductor engineering, machine learning, and entrepreneurship — turning hard problems into working systems.</p>
+        <a href="#" class="hero-cta" onclick="showPage('p2', document.getElementById('nav-p2'))">Connect with me →</a>
+      </div>
+      <img src="profile.png" alt="Kai Choong" class="hero-photo">
+    </div>
   </div>
 
   <!-- ABOUT -->
@@ -698,7 +699,7 @@
 
   <div class="social-page">
     <div class="social-hero">
-      <div class="social-avatar">KC</div>
+      <img src="profile.png" alt="Kai Choong" class="social-avatar">
       <div class="social-name">Kai Choong</div>
       <div class="social-tagline">Engineer · Builder · Maker</div>
     </div>
